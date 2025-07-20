@@ -1,26 +1,20 @@
-import WelcomeMessage from './WelcomeMessage';
-import Header from './Header';
-import MainContent from './MainContent';
-import Footer from './Footer';
-import Counter from './Counter';
-import { useState } from 'react';
+import React from 'react';
+import Counter from './components/Counter'; // Adjust path if necessary
 
-const App = () => {
-    const [count, setCount] = useState(0);
-
-    return (
-        <div>
-            <UserProfile name="Alice" age="25" bio="Loves hiking and photography" />
-            <WelcomeMessage message="Hello everyone I am learning React at ALX" />
-            <Header title="My Favorite Cities" />
-            <MainContent content="I love to visit New York, Paris and Tokyo" />
-            <Footer text="City Lovers" />
-            <p>Current Count: {count}</p>
-            <button onClick={() => setCount(count + 1)}>Increment</button>
-            <button onClick={() => setCount(count - 1)}>Decrement</button>
-            <button onClick={() => setCount(0)}>Reset</button>
-        </div>
-    );
-};
+function App() {
+  return (
+    <div style={{
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      minHeight: '100vh',
+      backgroundColor: '#f0f0f0'
+    }}>
+      <h1>React Counter App</h1>
+      <Counter />
+    </div>
+  );
+}
 
 export default App;
