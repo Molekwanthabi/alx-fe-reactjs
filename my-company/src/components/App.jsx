@@ -1,20 +1,25 @@
-import UserProfile from './UserProfile';
-import WelcomeMessage from './WelcomeMessage';
-import Header from './Header';
-import MainContent from './MainContent';
-import Footer from './Footer';
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Navbar from './Navbar';
+import Home from './Home';
+import About from './About';
+import Services from './Services';
+import Contact from './Contact';
 
-
-const App = () => {
-    return (
-        <div>
-            <UserProfile name="Alice" age="25" bio="Loves hiking and photography" />
-            <WelcomeMessage Hello everyone I am learning React at ALX /> 
-            <Header My Favorite Cities />
-            <MainContent I love to visit New York Paris and Tokyo />
-            <Footer City Lovers />
-        </div>
-    );
-};
+function App() {
+  return (
+    <BrowserRouter>
+      <div style={{ fontFamily: 'Arial, sans-serif' }}>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
+  );
+}
 
 export default App;
