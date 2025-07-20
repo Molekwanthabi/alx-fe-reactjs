@@ -11,6 +11,10 @@ function App() {
     <BrowserRouter>
       <div style={{ fontFamily: 'Arial, sans-serif' }}>
         <Navbar />
+        <Contact />
+        <Home />
+        <About />
+        <Services />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
