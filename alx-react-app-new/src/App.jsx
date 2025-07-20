@@ -3,6 +3,7 @@ import WelcomeMessage from './WelcomeMessage';
 import Header from './Header';
 import MainContent from './MainContent';
 import Footer from './Footer';
+import Counter from './Counter';
 import { useState } from 'react';
 
 const App = () => {
