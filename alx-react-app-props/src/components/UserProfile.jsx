@@ -1,6 +1,7 @@
 import React from 'react';
 import usercontext from 'UserContext',
 
+const UserContext = React.createContext();
 const UserProfile = (props) => {
     return (
         <div>
