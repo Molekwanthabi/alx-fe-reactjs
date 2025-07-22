@@ -1,26 +1,51 @@
-import { Link } from 'react-router-dom';
-import { useRecipeStore } from '../store/recipeStore';
+// RecipeList component
+  import { useRecipeStore } from './recipeStore';
 
-const RecipeList = () => {
-  const recipes = useRecipeStore((state) => state.recipes);
+  const RecipeList = () => {
+    const recipes = useRecipeStore(state => state.recipes);
 
-  return (
-    <div>
-      <h2>All Recipes</h2>
-      {recipes.length === 0 ? (
-        <p>No recipes yet.</p>
-      ) : (
-        recipes.map((recipe) => (
+    return (
+      <div>
+        {recipes.map(recipe => (
           <div key={recipe.id}>
-            <Link to={`/recipe/${recipe.id}`}>
-              <h3>{recipe.title}</h3>
-            </Link>
+            <h3>{recipe.title}</h3>
             <p>{recipe.description}</p>
           </div>
-        ))
-      )}
-    </div>
-  );
-};
+        ))}
+      </div>
+    );
+  };
 
-export default RecipeList;
+  // AddRecipeForm component
+  import { useState } from 'react';
+  import { useRecipeStore } from './recipeStore';
+
+  const AddRecipeForm = () => {
+    const addRecipe = useRecipeStore(state => state.addRecipe);
+    const [title, setTitle] = useState('');
+    const [description, setDescription] = useState('');
+
+    const handleSubmit = (event) => {
+      event.preventDefault();
+      addRecipe({ id: Date.now(), title, description });
+      setTitle('');
+      setDescription('');
+    };
+
+    return (
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          placeholder="Title"
+        />
+        <textarea
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          placeholder="Description"
+        />
+        <button type="submit">Add Recipe</button>
+      </form>
+    );
+  };
