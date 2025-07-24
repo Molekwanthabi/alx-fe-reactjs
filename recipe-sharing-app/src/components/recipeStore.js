@@ -55,3 +55,5 @@ function filterBySearch(recipes, term) {
     recipe.description.toLowerCase().includes(t)
   );
 }
+
+event.preventDefault();
