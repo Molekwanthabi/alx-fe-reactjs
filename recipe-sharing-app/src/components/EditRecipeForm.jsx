@@ -1,6 +1,10 @@
    // src/components/EditRecipeForm.jsx
 import { useState } from 'react';
 import { useRecipeStore } from '../store/recipeStore';
+import EditRecipeForm from './components/EditRecipeForm';
+
+<Route path="/edit/:id" element={<EditRecipeForm />} />
+
 
 const EditRecipeForm = ({ recipe }) => {
   const [title, setTitle] = useState(recipe.title);
