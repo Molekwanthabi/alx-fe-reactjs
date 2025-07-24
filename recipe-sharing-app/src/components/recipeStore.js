@@ -1,22 +1,50 @@
 // src/store/recipeStore.js
 import { create } from 'zustand';
 
-export const useRecipeStore = create((set) => ({
+export const useRecipeStore = create((set, get) => ({
   recipes: [],
+  searchTerm: '',
+  filteredRecipes: [],
+
   addRecipe: (newRecipe) =>
+    set((state) => {
+      const updatedRecipes = [...state.recipes, newRecipe];
+      return {
+        recipes: updatedRecipes,
+        filteredRecipes: filterBySearch(updatedRecipes, state.searchTerm),
+      };
+    }),
+
+  setRecipes: (recipes) =>
     set((state) => ({
-      recipes: [...state.recipes, newRecipe],
+      recipes,
+      filteredRecipes: filterBySearch(recipes, state.searchTerm),
     })),
-  setRecipes: (recipes) => set({ recipes }),
+
   deleteRecipe: (id) =>
-    set((state) => ({
-      recipes: state.recipes.filter((recipe) => recipe.id !== id),
-    })),
+    set((state) => {
+      const updatedRecipes = state.recipes.filter((r) => r.id !== id);
+      return {
+        recipes: updatedRecipes,
+        filteredRecipes: filterBySearch(updatedRecipes, state.searchTerm),
+      };
+    }),
+
   updateRecipe: (updatedRecipe) =>
+    set((state) => {
+      const updatedRecipes = state.recipes.map((r) =>
+        r.id === updatedRecipe.id ? updatedRecipe : r
+      );
+      return {
+        recipes: updatedRecipes,
+        filteredRecipes: filterBySearch(updatedRecipes, state.searchTerm),
+      };
+    }),
+
+  setSearchTerm: (term) =>
     set((state) => ({
-      recipes: state.recipes.map((recipe) =>
-        recipe.id === updatedRecipe.id ? updatedRecipe : recipe
-      ),
+      searchTerm: term,
+      filteredRecipes: filterBySearch(state.recipes, term),
     })),
 }));
 
@@ -24,8 +52,6 @@ function filterBySearch(recipes, term) {
   const t = term.toLowerCase();
   return recipes.filter((recipe) =>
     recipe.title.toLowerCase().includes(t) ||
-    recipe.description.toLowerCase().includes(t) ||
-    (recipe.ingredients?.join(', ') || '').toLowerCase().includes(t) ||
-    (recipe.time?.toString() || '').includes(t)
+    recipe.description.toLowerCase().includes(t)
   );
 }
