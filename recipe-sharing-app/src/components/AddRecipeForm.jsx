@@ -6,7 +6,7 @@ const AddRecipeForm = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     if (!title || !description) return;
 
