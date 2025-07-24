@@ -19,3 +19,13 @@ export const useRecipeStore = create((set) => ({
       ),
     })),
 }));
+
+function filterBySearch(recipes, term) {
+  const t = term.toLowerCase();
+  return recipes.filter((recipe) =>
+    recipe.title.toLowerCase().includes(t) ||
+    recipe.description.toLowerCase().includes(t) ||
+    (recipe.ingredients?.join(', ') || '').toLowerCase().includes(t) ||
+    (recipe.time?.toString() || '').includes(t)
+  );
+}
