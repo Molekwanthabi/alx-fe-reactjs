@@ -7,68 +7,66 @@ function RegistrationForm() {
     password: "",
   });
 
-  const [error, setError] = useState("");
-
   const handleChange = (e) => {
+    const { name, value } = e.target;
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [name]: value,
     });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // Basic validation
-    if (!formData.username || !formData.email || !formData.password) {
-      setError("All fields are required!");
-      return;
-    }
-
-    setError("");
-
-    // Mock API submission
-    console.log("Submitting form:", formData);
-    alert("User registered successfully!");
+    console.log("Form submitted:", formData);
   };
 
   return (
-    <div className="max-w-md mx-auto mt-10 p-6 bg-gray-100 rounded-lg shadow-lg">
-      <h2 className="text-xl font-bold mb-4">User Registration (Controlled)</h2>
-      {error && <p className="text-red-500 mb-3">{error}</p>}
-      <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="max-w-md mx-auto p-4 border rounded shadow">
+      <h2 className="text-xl font-bold mb-4">Registration Form</h2>
+
+      <div className="mb-3">
+        <label className="block mb-1">Username:</label>
         <input
           type="text"
           name="username"
-          placeholder="Username"
-          value={formData.username}
+          value={formData.username}   {/* ✅ controlled input */}
           onChange={handleChange}
-          className="w-full p-2 border rounded"
+          className="w-full border px-2 py-1 rounded"
+          required
         />
+      </div>
+
+      <div className="mb-3">
+        <label className="block mb-1">Email:</label>
         <input
           type="email"
           name="email"
-          placeholder="Email"
-          value={formData.email}
+          value={formData.email}   {/* ✅ controlled input */}
           onChange={handleChange}
-          className="w-full p-2 border rounded"
+          className="w-full border px-2 py-1 rounded"
+          required
         />
+      </div>
+
+      <div className="mb-3">
+        <label className="block mb-1">Password:</label>
         <input
           type="password"
           name="password"
-          placeholder="Password"
-          value={formData.password}
+          value={formData.password}   {/* ✅ controlled input */}
           onChange={handleChange}
-          className="w-full p-2 border rounded"
+          className="w-full border px-2 py-1 rounded"
+          required
         />
-        <button
-          type="submit"
-          className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
-        >
-          Register
-        </button>
-      </form>
-    </div>
+      </div>
+
+      <button
+        type="submit"
+        className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+      >
+        Register
+      </button>
+    </form>
   );
 }
 
