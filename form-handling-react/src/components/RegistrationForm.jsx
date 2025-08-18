@@ -41,7 +41,7 @@ function RegistrationForm() {
           type="text"
           name="username"
           placeholder="Username"
-          value={formData.username}
+          value={username}
           onChange={handleChange}
           className="w-full p-2 border rounded"
         />
@@ -49,7 +49,7 @@ function RegistrationForm() {
           type="email"
           name="email"
           placeholder="Email"
-          value={formData.email}
+          value={email}
           onChange={handleChange}
           className="w-full p-2 border rounded"
         />
@@ -57,7 +57,7 @@ function RegistrationForm() {
           type="password"
           name="password"
           placeholder="Password"
-          value={formData.password}
+          value={password}
           onChange={handleChange}
           className="w-full p-2 border rounded"
         />
