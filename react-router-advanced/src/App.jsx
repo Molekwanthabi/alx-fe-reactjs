@@ -17,7 +17,7 @@ function App() {
           <Link to="/">Home</Link>
           <Link to="/about">About</Link>
           <Link to="/profile">Profile</Link>
-          <Link to="/posts/42">Blog Post 42</Link>
+          <Link to="/blog/42">Blog Post 42</Link> {/* Updated Link */}
           <Link to="/login">Login</Link>
           <button onClick={() => setIsLoggedIn(!isLoggedIn)}>
             {isLoggedIn ? 'Logout' : 'Login'}
@@ -39,7 +39,7 @@ function App() {
           />
 
           {/* Dynamic Route */}
-          <Route path="/posts/:id" element={<BlogPost />} />
+          <Route path="/blog/:id" element={<BlogPost />} /> {/* Updated Route */}
 
           {/* Login */}
           <Route path="/login" element={<Login />} />
