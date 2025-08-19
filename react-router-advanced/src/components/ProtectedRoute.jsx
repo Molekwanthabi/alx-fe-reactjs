@@ -1,11 +1,16 @@
-import { Navigate } from "react-router-dom";
+import { Navigate, useLocation } from 'react-router-dom';
+import { useAuth } from '../hooks/useAuth';
 
-// Fake auth state for demo
-const isAuthenticated = false; // change to true after login
+function ProtectedRoute({ children }) {
+  const { user } = useAuth();
+  const location = useLocation();
 
-export default function ProtectedRoute({ children }) {
-  if (!isAuthenticated) {
-    return <Navigate to="/login" replace />;
+  if (!user) {
+    // Redirect to login page with the current URL as the "from" location
+    return <Navigate to="/login" state={{ from: location }} replace />;
   }
+
   return children;
 }
+
+export default ProtectedRoute;
