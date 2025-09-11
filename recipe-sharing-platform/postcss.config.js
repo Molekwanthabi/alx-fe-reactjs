@@ -1,1 +1,6 @@
-Mmm
+export default {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
+} 
