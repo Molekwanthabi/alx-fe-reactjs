@@ -1,12 +1,31 @@
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import HomePage from "./components/HomePage";
+import RecipeDetail from "./components/RecipeDetail";
+import AddRecipeForm from "./components/AddRecipeForm";
 
 function App() {
   return (
     <div className="min-h-screen bg-gray-100">
-      <HomePage />
+      <Router>
+        {/* Simple Navbar */}
+        <nav className="bg-white shadow p-4 flex justify-between items-center">
+          <Link to="/" className="text-xl font-bold text-blue-600">Recipe Share</Link>
+          <div className="space-x-4">
+            <Link to="/" className="hover:text-blue-500">Home</Link>
+            <Link to="/add" className="hover:text-blue-500">Add Recipe</Link>
+          </div>
+        </nav>
+
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/recipe/:id" element={<RecipeDetail />} />
+          <Route path="/add" element={<AddRecipeForm />} />
+        </Routes>
+      </Router>
     </div>
   );
 }
 
 export default App;
+
 
